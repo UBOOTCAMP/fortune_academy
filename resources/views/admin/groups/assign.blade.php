@@ -68,8 +68,6 @@
             e.preventDefault();
             var $this = $(this);
             var groupId = $('#groupId').val();
-            // $this.attr('disabled', 'true');
-            // $this.text('loading...');
             var checkboxes = $("input[name='student_ids']:checked");
             if(checkboxes.is(":checked")){
                 var yourArray = [];

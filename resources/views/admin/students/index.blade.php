@@ -28,55 +28,58 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="studentsList" class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Roll No.</th>
-                            <th>Title</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Company Name</th>
-                            <th>Avatar</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($students as $student)
+                    <div id="classesWrapper" class="dataTables_wrapper dt-bootstrap5">
+                        <table id="studentsList" class="table table-striped table-bordered dataTable" role="grid"
+                               aria-describedby="example2_info">
+                            <thead>
                             <tr>
-                                <td>{{ $student->roll_no }}</td>
-                                <td>{{ $student->title }}</td>
-                                <td>{{ $student->first_name }}</td>
-                                <td>{{ $student->last_name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->phone }}</td>
-                                <td>{{ $student->company_name }}</td>
-                                <td><img src="{{ $student->getImagePath($student->avatar) }}" class="img-fluid"
-                                         width="40px" alt="{{ $student->first_name }}"></td>
-                                @if ($student->status == 1)
-                                    <td><a href="#" onclick="statusUpdate({{$student->id}})" id="status"
-                                           class="badge bg-light-success text-success">Active</a></td>
-                                @else
-                                    <td><a href="#" onclick="statusUpdate({{$student->id}})" id="status"
-                                           class="badge bg-light-danger text-danger">Inactive</a></td>
-                                @endif
-                                <td>
-                                    <div class="d-flex order-actions">
-                                        <a href="{{route('students.edit',
-                                ['student'=>$student->id])}}" class="text-primary bg-light-primary border-0"><i
-                                                class="bx bxs-edit"></i></a>
-                                        <a href="#"
-                                           data-route="{{route('students.destroy', ['student'=>$student->id])}}"
-                                           class="ms-3 delete text-danger bg-light-danger border-0"><i
-                                                class="bx bxs-trash"></i></a>
-                                    </div>
-                                </td>
+                                <th>Roll No.</th>
+                                <th>Title</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Company Name</th>
+                                <th>Avatar</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{ $student->roll_no }}</td>
+                                    <td>{{ $student->title }}</td>
+                                    <td>{{ $student->first_name }}</td>
+                                    <td>{{ $student->last_name }}</td>
+                                    <td>{{ $student->email }}</td>
+                                    <td>{{ $student->phone }}</td>
+                                    <td>{{ $student->company_name }}</td>
+                                    <td><img src="{{ $student->getImagePath($student->avatar) }}" class="img-fluid"
+                                             width="40px" alt="{{ $student->first_name }}"></td>
+                                    @if ($student->status == 1)
+                                        <td><a href="#" onclick="statusUpdate({{$student->id}})" id="status"
+                                               class="badge bg-light-success text-success">Active</a></td>
+                                    @else
+                                        <td><a href="#" onclick="statusUpdate({{$student->id}})" id="status"
+                                               class="badge bg-light-danger text-danger">Inactive</a></td>
+                                    @endif
+                                    <td>
+                                        <div class="d-flex order-actions">
+                                            <a href="{{route('students.edit',
+                                ['student'=>$student->id])}}" class="text-primary bg-light-primary border-0"><i
+                                                    class="bx bxs-edit"></i></a>
+                                            <a href="#"
+                                               data-route="{{route('students.destroy', ['student'=>$student->id])}}"
+                                               class="ms-3 delete text-danger bg-light-danger border-0"><i
+                                                    class="bx bxs-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,8 +151,18 @@
         }
     </script>
     <script>
+        // $(document).ready(function () {
+        //     $('#studentsList').DataTable();
+        // });
+
         $(document).ready(function () {
-            $('#studentsList').DataTable();
+            var table = $('#studentsList').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'print']
+            });
+
+            table.buttons().container()
+                .appendTo('#classesWrapper .col-md-6:eq(0)');
         });
     </script>
 @endpush
