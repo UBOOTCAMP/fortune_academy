@@ -39,6 +39,7 @@ class ClassesController extends Controller
             'discount_price' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
+            'image' => 'mimes:jpg,jpeg,png',
         ]);
 
         $request->merge([
@@ -55,8 +56,8 @@ class ClassesController extends Controller
             $image_name = time() . $image->getClientOriginalName();
             Storage::disk('public')->putFileAs('images', $image, $image_name);
             $classData['image'] = $image_name;
-            Classes::create($classData);
         }
+        Classes::create($classData);
         return redirect()->route('classes.index');
     }
 
@@ -95,8 +96,8 @@ class ClassesController extends Controller
         $timeConcatenate = $request->start_time . ' - ' . $request->end_time;
         $request['timing'] = $timeConcatenate;
         $classData = $request->except('start_time', 'end_time');
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $image = $request->file('image');
+        if ($request->file('image') && $request->file('image')->isValid()) {
+            $image = $request->image;
             $image_name = time() . $image->getClientOriginalName();
             Storage::disk('public')->putFileAs('images', $image, $image_name);
             $classData['image'] = $image_name;

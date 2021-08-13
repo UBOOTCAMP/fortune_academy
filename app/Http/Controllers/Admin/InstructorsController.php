@@ -64,11 +64,11 @@ class InstructorsController extends Controller
         $user->roles()->attach(['role_id' => 3]);
 
         // SAVE CLASSES
-        foreach ($request->classes as $class) {
-            $instructor->classes()->attach([
-                'class_id' => $class
-            ]);
-        }
+//        foreach ($request->classes as $class) {
+//            $instructor->classes()->attach([
+//                'class_id' => $class
+//            ]);
+//        }
 
         return redirect()->route('instructors.index');
 
@@ -114,14 +114,14 @@ class InstructorsController extends Controller
         }
         $instructor->update($instructorData);
 
-        foreach ($request->classes as $class) {
-            $instructor->classes()->detach([
-                'class_id' => $class
-            ]);
-            $instructor->classes()->attach([
-                'class_id' => $class
-            ]);
-        }
+//        foreach ($request->classes as $class) {
+//            $instructor->classes()->detach([
+//                'class_id' => $class
+//            ]);
+//            $instructor->classes()->attach([
+//                'class_id' => $class
+//            ]);
+//        }
 
         return redirect()->route('instructors.index');
     }

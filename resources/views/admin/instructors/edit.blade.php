@@ -99,21 +99,21 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <h5>Classes</h5>
-                        <div class="col-6 my-2">
-                            @php
-                                $selectedClsIds = $instructor->classes()->pluck('id')->toArray();
-                            @endphp
-                            @foreach ($classes as $class)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="classes[]" {{ in_array($class->id, $selectedClsIds) ? 'checked' : '' }} type="checkbox"  value="{{ $class->id }}" id="class">
-                                    <label class="form-check-label" for="class"><strong>{{ $class->class_name }}</strong></label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+{{--                    <hr>--}}
+{{--                    <div class="row">--}}
+{{--                        <h5>Classes</h5>--}}
+{{--                        <div class="col-6 my-2">--}}
+{{--                            @php--}}
+{{--                                $selectedClsIds = $instructor->classes()->pluck('id')->toArray();--}}
+{{--                            @endphp--}}
+{{--                            @foreach ($classes as $class)--}}
+{{--                                <div class="form-check form-check-inline">--}}
+{{--                                    <input class="form-check-input" name="classes[]" {{ in_array($class->id, $selectedClsIds) ? 'checked' : '' }} type="checkbox"  value="{{ $class->id }}" id="class">--}}
+{{--                                    <label class="form-check-label" for="class"><strong>{{ $class->class_name }}</strong></label>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">Update</button>
                         <a href="{{ route('instructors.index') }}"

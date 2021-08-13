@@ -109,20 +109,20 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <h5>Classes</h5>
-                        <div class="col-12 my-2">
-                            @foreach ($classes as $class)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="classes[]" type="checkbox"
-                                           value="{{ $class->id }}" id="class">
-                                    <label class="form-check-label"
-                                           for="class"><strong>{{ $class->class_name }}</strong></label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+{{--                    <hr>--}}
+{{--                    <div class="row">--}}
+{{--                        <h5>Classes</h5>--}}
+{{--                        <div class="col-12 my-2">--}}
+{{--                            @foreach ($classes as $class)--}}
+{{--                                <div class="form-check form-check-inline">--}}
+{{--                                    <input class="form-check-input" name="classes[]" type="checkbox"--}}
+{{--                                           value="{{ $class->id }}" id="class">--}}
+{{--                                    <label class="form-check-label"--}}
+{{--                                           for="class"><strong>{{ $class->class_name }}</strong></label>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="col-6">
                         <button type="submit" class="btn btn-success">Save</button>
